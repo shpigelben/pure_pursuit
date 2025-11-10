@@ -1,0 +1,5 @@
+- [ ] Create the animator in a different function that can be called.
+    - it should be able to accept any number of pursuers and or evadors.
+- [ ] Implement the possibility of generating interesting trajectories for the b (Bezier curves)
+- [ ] Implement more sophisticated pursuit algorithms
+- [ ] Compare pursuit algorithms
