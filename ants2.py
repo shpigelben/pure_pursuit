@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from pursuer_evador import Pursuer, Evader
-import pure_pursuit
+import pursuit
 import animate
 
 if __name__ == "__main__":
@@ -38,10 +38,10 @@ if __name__ == "__main__":
     d_trail_list = [[], []]
 
     for step in range(steps):
-        pure_pursuit.pure_pursuit(a, b)
-        pure_pursuit.pure_pursuit(b, c)
-        pure_pursuit.pure_pursuit(c, d)
-        pure_pursuit.pure_pursuit(d, a)
+        pursuit.pure_pursuit(a, b)
+        pursuit.pure_pursuit(b, c)
+        pursuit.pure_pursuit(c, d)
+        pursuit.pure_pursuit(d, a)
 
         a.move(dt)
         b.move(dt)

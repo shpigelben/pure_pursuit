@@ -1,17 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from pursuer_evador import Pursuer, Evader
-import pure_pursuit
-# import animate
+from pursuer_evador import Pursuer
+import pursuit
 
 if __name__ == "__main__":
-    v0 = 100
+    v0 = 1
     t = np.sqrt(3) / 2
     a = Pursuer(position=[-0.5, 0.0], velocity=[v0*0.1, v0*0.0])
     b = Pursuer(position=[0.5, 0.0], velocity=[-v0*0.1 * 0.5, v0*0.1 * t])
-    c = Pursuer(position=[0.0, t], velocity=[-v0*0.1 * 0.5, -v0*0.1 * t])
+    c = Pursuer(position=[0.0, 3*t], velocity=[-v0*0.1 * 0.5, -v0*0.1 * t])
 
-    dt = 0.001
+    dt = 0.05
     steps = 2000
 
     plt.ion()
@@ -19,7 +18,7 @@ if __name__ == "__main__":
     ax.set(xlabel="x", ylabel="y")
     mu = (a.position + b.position + c.position) / 3
     L = 1
-    ax.set(xlim=(mu[0] - L, mu[0] + L), ylim=(mu[1] - L, mu[1] + L))
+    ax.set(xlim=(mu[0] - L, mu[0] + L), ylim=(mu[1] - L, mu[1] + 2*L))
 
     a_location = ax.scatter([], [], s=40, color="crimson")
     b_location = ax.scatter([], [], s=40, color="royalblue")
@@ -34,9 +33,10 @@ if __name__ == "__main__":
     c_trail_list = [[], []]
 
     for step in range(steps):
-        pure_pursuit.pure_pursuit(a, b)
-        pure_pursuit.pure_pursuit(b, c)
-        pure_pursuit.pure_pursuit(c, a)
+        a.update_velocity(b, 'pure_pursuit')
+        b.update_velocity(c, 'pure_pursuit')
+        c.update_velocity(a, 'pure_pursuit')
+
         a.move(dt)
         b.move(dt)
         c.move(dt)

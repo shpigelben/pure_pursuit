@@ -1,5 +1,9 @@
-- [ ] Create the animator in a different function that can be called.
-    - it should be able to accept any number of pursuers and or evadors.
+- [x] Create the animator in a different function that can be called.
+    - Added `animate.animate_simulation` which supports any number of pursuers and/or evaders via iterable inputs.
 - [ ] Implement the possibility of generating interesting trajectories for the b (Bezier curves)
 - [ ] Implement more sophisticated pursuit algorithms
 - [ ] Compare pursuit algorithms
+- [ ] need to create an abstraction for Pursuer Evader -> Agent.
+    - [ ] insert pursuit types into the Evader.
+- [ ] simulation.py module advances one time step of the entire eimulation
+- [ ] animation.py used the simulation.py to iterate over time steps and plot a visualization.
